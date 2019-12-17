@@ -1,18 +1,13 @@
 import React from 'react';
-import './App.css';
-import {firestore} from './firebase.js'
-
-firestore.collection('Breakfast').get();
+import ShowMenu from './pages/floor';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello World</h1>
-      </header>
+    <div>
+      <ShowMenu />
     </div>
   );
 }
-
-
+  
 export default App;
