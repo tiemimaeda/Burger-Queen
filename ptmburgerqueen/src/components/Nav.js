@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Nav () {
   return (
-    <nav>
+    <nav >
       <ul>
         <li>
           <Link to="/floor">Salão</Link>
@@ -18,3 +18,4 @@ function Nav () {
 };
 
 export default Nav
+

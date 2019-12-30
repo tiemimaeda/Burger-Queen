@@ -8,19 +8,20 @@ function Order (props) {
       <div className={css(styles.order)}>
         <span>{props.item.Name}</span>
         {props.item.Price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+        
         <Button
           className={css(styles.btnAddMinus)}
           handleClick={() =>
-            props.createorder(props.item)}
+            props.createOrder(props.item)}
           title={'-'}
         />
       
         <Button
           className={css(styles.btnAddMinus)}
           handleClick={() =>
-            props.createorder(props.item)}
+            props.createOrder(props.item)}
           title={'+'}
-        />     
+        />   
       </div>
     </div>
   )
@@ -31,12 +32,11 @@ export default Order;
 const styles = StyleSheet.create({
   btnAddMinus: {
     fontWeight:'bolder',
-    height: '30px',
-    width: '30px',
+    height: '20px',
+    width: '20px',
   },
   order:{
     display:"flex",
-    justifyContent:"space-between",
-    fontSize:"20px"
+    justifyContent: 'space-between',
   }
 })
