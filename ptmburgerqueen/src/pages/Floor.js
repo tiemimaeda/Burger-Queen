@@ -81,7 +81,7 @@ function ShowMenu() {
       </div>
 
       <div className={css(styles.styleMenu)}>
-        <p className={css(styles.title)}>PEDIDO</p>
+        <p className={css(styles.title)}>RESUMO DO PEDIDO</p>
         <Input class='input' label='Nome: ' type='text' value={customer}
           handleChange={e => setCustomer(e.currentTarget.value)} holder='Nome do Cliente'
         />
@@ -136,8 +136,9 @@ const styles = StyleSheet.create({
     width: '120px',
     height: '50px',
     borderRadius: '6px',
-    backgroundColor: '#d8572a',
+    backgroundColor: '#ff9f1c',
     color: 'white',
+    fontWeight: 'bold',
   },
 
   btnProducts: {

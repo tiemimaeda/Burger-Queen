@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
     height: '65px',
     width: '120px',
     marginBottom: '2%',
-    backgroundColor: '#f7d029',
+    backgroundColor: 'FBFFFE',
     borderRadius: '6px',
   },
 
-
+  
 })
