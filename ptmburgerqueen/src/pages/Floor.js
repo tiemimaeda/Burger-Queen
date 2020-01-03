@@ -121,11 +121,11 @@ function ShowMenu() {
 
       <div className={css(styles.styleMenu)}>
         <p className={css(styles.title)}>RESUMO DO PEDIDO</p>
-        <Input class='input' label='Nome: ' type='text' value={customer}
+        <Input class='input' type='text' value={customer}
           handleChange={e => setCustomer(e.currentTarget.value)} holder='Nome do Cliente'
         />
 
-        <Input class='input' label='Mesa: ' type='text' value={table}
+        <Input class='input' type='text' value={table}
           handleChange={e => setTable(e.currentTarget.value)} holder='Número da Mesa'
         />
 
