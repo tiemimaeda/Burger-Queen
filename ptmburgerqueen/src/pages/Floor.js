@@ -39,24 +39,31 @@ function ShowMenu() {
      const newOrder = [...order];
      newOrder[itemIndex].count += 1;
      setOrder (newOrder);
-     console.log(newOrder)
     }
-    setTotal(item.Price)
+    setTotal(total + item.Price) 
+  }
+
+  function removeItem (item) {
+    const index = (order.indexOf(item));
+    order.splice(index, 1);
+    setOrder([...order]);
+    setTotal(total - (item.Price * item.count))
   }
 
   function minusItem(item) {
     const itemIndex = order.findIndex((el) => el.id === item.id);
-    if (itemIndex === 1) {
-      setOrder([...order, {...item, count: -1}]);
+    const itemCount = order[itemIndex]
+    if (itemCount.count === 1) {
+      removeItem(itemCount);
 
     } else {
      const newOrder = [...order];
-     newOrder[itemIndex].count -= 1;
-     setOrder (newOrder);
-     console.log(newOrder)
+     newOrder[itemIndex].count += -1;
+     setOrder ([...order]);
     }
-    setTotal(item.Price)
+    setTotal(total - (item.Price))
   }
+
 
   function sendOrder() {
     firestore
@@ -118,7 +125,7 @@ function ShowMenu() {
         />
 
         <p>ITENS</p>
-        {order.map((item) => <Order key={item.id} item={item} addItem={addItem} minusItem={minusItem} />)}
+        {order.map((item) => <Order key={item.id} item={item} addItem={addItem} removeItem={removeItem} minusItem={minusItem} />)}
         <p>Total: {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
         <Button className={css(styles.btnSendOrder)}
           handleClick={(e) => {

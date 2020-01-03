@@ -23,7 +23,14 @@ function Order (props) {
           handleClick={() =>
             props.addItem(props.item)}
           title={'+'}
-        />   
+        /> 
+
+        <Button
+          className={css(styles.btnAddMinus)}
+          handleClick={() =>
+            props.removeItem(props.item)}
+          title={'🗑'}
+        />     
       </div>
     </div>
   )
@@ -34,8 +41,8 @@ export default Order;
 const styles = StyleSheet.create({
   btnAddMinus: {
     fontWeight:'bolder',
-    height: '20px',
-    width: '20px',
+    height: '30px',
+    width: '30px',
   },
   order:{
     display:"flex",
