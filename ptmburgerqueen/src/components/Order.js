@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, css} from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite';
 import Button from './Button';
 
 function Order (props) {
@@ -12,14 +12,16 @@ function Order (props) {
         <Button
           className={css(styles.btnAddMinus)}
           handleClick={() =>
-            props.createOrder(props.item)}
+            props.minusItem(props.item)}
           title={'-'}
         />
-      
+
+        {props.item.count}
+
         <Button
           className={css(styles.btnAddMinus)}
           handleClick={() =>
-            props.createOrder(props.item)}
+            props.addItem(props.item)}
           title={'+'}
         />   
       </div>

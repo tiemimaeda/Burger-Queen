@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, css} from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite';
 import Button from '../components/Button';
 
 function Menu (props) {
@@ -9,7 +9,7 @@ function Menu (props) {
           className={css(styles.btnProducts)}
           Name={props.item.Name}
           Price={props.item.Price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-          handleClick={() => props.createOrder(props.item)}
+          handleClick={() => props.addItem(props.item)}
         />
     </div>
   )
@@ -26,5 +26,5 @@ const styles = StyleSheet.create({
     borderRadius: '6px',
   },
 
-  
+
 })

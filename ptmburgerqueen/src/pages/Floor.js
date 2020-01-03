@@ -27,11 +27,35 @@ function ShowMenu() {
         setLunchItems(fullMenu.filter(doc => doc.Category === 'Lanches'));
       })
   }, [])
-
+ 
   const categoryItems = category === 'Lanches' ? lunchItems : breakfastItems;
 
-  function createOrder(item) {
-    setOrder([...order, item])
+  function addItem(item) {
+    const itemIndex = order.findIndex((el) => el.id === item.id);
+    if (itemIndex === -1) {
+      setOrder([...order, {...item, count: 1}]);
+
+    } else {
+     const newOrder = [...order];
+     newOrder[itemIndex].count += 1;
+     setOrder (newOrder);
+     console.log(newOrder)
+    }
+    setTotal(item.Price)
+  }
+
+  function minusItem(item) {
+    const itemIndex = order.findIndex((el) => el.id === item.id);
+    if (itemIndex === 1) {
+      setOrder([...order, {...item, count: -1}]);
+
+    } else {
+     const newOrder = [...order];
+     newOrder[itemIndex].count -= 1;
+     setOrder (newOrder);
+     console.log(newOrder)
+    }
+    setTotal(item.Price)
   }
 
   function sendOrder() {
@@ -49,7 +73,10 @@ function ShowMenu() {
         setOrder([])
         setTotal([])
       })
-  }
+      .catch(err => {
+        console.log('erro')
+      })
+  } 
 
   return (
     <div className={css(styles.floorPage)}>
@@ -76,7 +103,7 @@ function ShowMenu() {
         </div>
         
         <div className={css(styles.productsList)}>
-          {categoryItems.map((item) => <Menu item={item} createOrder={createOrder} />)}
+          {categoryItems.map((item) => <Menu key={item.id} item={item} addItem={addItem} />)}
         </div>
       </div>
 
@@ -91,8 +118,8 @@ function ShowMenu() {
         />
 
         <p>ITENS</p>
-        {order.map((item) => <Order item={item} createOrder={createOrder} />)}
-        <p>Total: {total + total}</p>
+        {order.map((item) => <Order key={item.id} item={item} addItem={addItem} minusItem={minusItem} />)}
+        <p>Total: {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
         <Button className={css(styles.btnSendOrder)}
           handleClick={(e) => {
             setOrder(sendOrder);
