@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import growl from "growl-alert";
+import "growl-alert/dist/growl-alert.css";
 import firestore from './utils/Firebase';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Menu from '../components/Menu';
 import Order from '../components/Order';
+
 
 function ShowMenu() {
   const [category, setCategory] = useState('Café da Manhã');
@@ -66,6 +69,7 @@ function ShowMenu() {
 
 
   function sendOrder() {
+    if (customer && table) {
     firestore
       .collection('Orders')
       .add({
@@ -75,14 +79,15 @@ function ShowMenu() {
         total
       })
       .then(() => {
+        growl.success('Pedido enviado com sucesso!')
         setCustomer('')
         setTable('')
         setOrder([])
         setTotal([])
-      })
-      .catch(err => {
-        console.log('erro')
-      })
+      })}
+      else {
+        growl.warning('Preencha nome e mesa')
+      }
   } 
 
   return (
@@ -124,12 +129,11 @@ function ShowMenu() {
           handleChange={e => setTable(e.currentTarget.value)} holder='Número da Mesa'
         />
 
-        <p>ITENS</p>
-        {order.map((item) => <Order key={item.id} item={item} addItem={addItem} removeItem={removeItem} minusItem={minusItem} />)}
-        <p>Total: {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+              {order.map((item) => <Order key={item.id} item={item} addItem={addItem} removeItem={removeItem} minusItem={minusItem} />)}
+        <div>Total: {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</div>
         <Button className={css(styles.btnSendOrder)}
           handleClick={(e) => {
-            setOrder(sendOrder);
+            sendOrder()
             e.preventDefault()
           }} title={'Enviar'}
         />
