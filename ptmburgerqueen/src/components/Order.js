@@ -11,25 +11,28 @@ function Order (props) {
         
         <Button
           className={css(styles.btnAddMinus)}
-          handleClick={() =>
-            props.minusItem(props.item)}
-          title={'-'}
+          handleClick={(e) => {
+            props.minusItem(props.item)
+            e.preventDefault()
+          }} title={'-'}
         />
 
         {props.item.count}
 
         <Button
           className={css(styles.btnAddMinus)}
-          handleClick={() =>
-            props.addItem(props.item)}
-          title={'+'}
+          handleClick={(e) => {
+            props.addItem(props.item)
+            e.preventDefault()
+          }}title={'+'}
         /> 
 
         <Button
           className={css(styles.btnAddMinus)}
-          handleClick={() =>
-            props.removeItem(props.item)}
-          title={'🗑'}
+          handleClick={(e) => {
+            props.removeItem(props.item)
+            e.preventDefault()
+          }}title={'🗑'}
         />     
       </div>
     </div>
