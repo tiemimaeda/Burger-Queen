@@ -2,6 +2,18 @@ import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import Button from './Button';
 
+const styles = StyleSheet.create({
+  btnAddMinus: {
+    fontWeight:'bolder',
+    height: '30px',
+    width: '30px',
+  },
+  order:{
+    display:"flex",
+    justifyContent: 'space-between',
+  }
+});
+
 function Order (props) {
   return (
     <div key={props.item.id}>
@@ -40,15 +52,3 @@ function Order (props) {
 };
 
 export default Order;
-
-const styles = StyleSheet.create({
-  btnAddMinus: {
-    fontWeight:'bolder',
-    height: '30px',
-    width: '30px',
-  },
-  order:{
-    display:"flex",
-    justifyContent: 'space-between',
-  }
-})

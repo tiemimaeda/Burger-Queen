@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Header from './components/Header';
+import Navbar from './components/Navbar';
 import ShowMenu from './pages/Floor';
 import Kitchen from './pages/Kitchen';
 
@@ -12,11 +12,13 @@ function App() {
   
   return (
    <Router>
-     <Header/>
+     <Navbar/>
     <div>
      <Switch>
         <Route path="/floor"> <ShowMenu /> </Route>
         <Route path="/kitchen"> <Kitchen /> </Route>
+        <Route path="/"> </Route>
+
       </Switch>
     </div>
   </Router>

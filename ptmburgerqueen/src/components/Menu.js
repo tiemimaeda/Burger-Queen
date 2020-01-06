@@ -2,6 +2,22 @@ import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import Button from '../components/Button';
 
+const styles = StyleSheet.create({
+  btnProducts: {
+    height: '65px',
+    width: '120px',
+    marginBottom: '2%',
+    backgroundColor: '#FFF9C7',
+    border: 'none',
+    borderRadius: '6px',
+
+    ':hover': {
+      backgroundColor: '#FF9305',
+      color: 'white',
+    },
+  },
+})
+
 function Menu (props) {
   return (
     <div key={props.item.id}>
@@ -16,15 +32,3 @@ function Menu (props) {
 };
 
 export default Menu;
-
-const styles = StyleSheet.create({
-  btnProducts: {
-    height: '65px',
-    width: '120px',
-    marginBottom: '2%',
-    backgroundColor: 'FBFFFE',
-    borderRadius: '6px',
-  },
-
-
-})

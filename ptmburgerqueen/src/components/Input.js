@@ -5,6 +5,7 @@ function Input(props) {
     <div className={props.class}>
       <label>{props.label}</label>
       <input
+        className={props.className}
         value={props.value}
         onChange={props.handleChange}
         placeholder={props.holder}
@@ -13,4 +14,4 @@ function Input(props) {
   )
 }
   
-  export default Input;
+export default Input;
