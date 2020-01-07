@@ -11,7 +11,6 @@ import Order from '../components/Order';
 const styles = StyleSheet.create({
   floorPage: {
     display: 'flex',
-    // fontFamily: 'Noto Sans JP sans-serif',
   },
 
   styleMenu: {
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     width: '50%',
-    borderRadius: '5px',
+    borderRadius: '8px',
     marginLeft: '1%',
     marginRight: '1%',
     backgroundColor: '#4F4F4F',
@@ -27,14 +26,17 @@ const styles = StyleSheet.create({
   
   title: {
     textAlign: 'center',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    color: 'white',
   },
   
   // Menu side
   btnMealsContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    textAlign: 'center',
     marginBottom: '30px',
+    textAlign: 'center',
   },
 
   btnMenu: {
@@ -90,11 +92,14 @@ const styles = StyleSheet.create({
     marginLeft: '2%',
     marginBottom: '2%',
     fontSize: '25px',
+    color: 'white',
+    fontWeight: 'bold',
   },
 
   btnSendOrder: {
     height:'45px',
     width:'120px',
+    marginTop: '2%',
     border: 'none',
     borderRadius:'8px',
     color: 'white',
@@ -164,7 +169,7 @@ function ShowMenu() {
      newOrder[itemIndex].count += -1;
      setOrder ([...order]);
     }
-    setTotal(total - (item.Price))
+    setTotal(total - item.Price)
   }
 
 

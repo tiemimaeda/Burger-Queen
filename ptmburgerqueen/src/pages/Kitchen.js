@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import firestore from './utils/Firebase';
+import { StyleSheet, css } from 'aphrodite';
 import OrderCard from '../components/OrderCard';
+
+const styles = StyleSheet.create({
+  title: {
+    textAlign: 'center',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    // color: 'white',
+  },
+
+  banana: {
+    backgroundColor: '#FFF9C7'
+  }
+});
 
 function Kitchen() {
   const [kitchenOrder, setkitchenOrder] = useState([]);
@@ -18,18 +32,25 @@ function Kitchen() {
   }, [])
 
   return (
-    <div>
-    <h2>Pedidos</h2>
+    <div className={css(styles.banana)}>
+    <p className={css(styles.title)}>Pedidos</p>
       <div>
-        {kitchenOrder.map((item) => <OrderCard
-          key={item.id} 
-          table={item.table}
-          customer={item.customer}
-          total={item.total}
+        {kitchenOrder.map((i) => <OrderCard
+          key={i.id} 
+          table={i.table}
+          customer={i.customer}
+          order={i.order.map(i => {
+            return(
+            <div>
+            <span>{i.Name},{i.count}</span>
+            </div>
+          )})}
+          total={i.total}
           />
-        )}
+          )}
       </div>
     </div>
-)}
+)
+};
 
-export default Kitchen
+export default Kitchen;
