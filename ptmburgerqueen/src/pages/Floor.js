@@ -188,7 +188,7 @@ function ShowMenu() {
         setCustomer('')
         setTable('')
         setOrder([])
-        setTotal([])
+        setTotal(0)
       })}
       else {
         growl.warning('Preencha nome e mesa')

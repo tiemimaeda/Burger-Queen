@@ -35,14 +35,14 @@ function Kitchen() {
     <div className={css(styles.banana)}>
     <p className={css(styles.title)}>Pedidos</p>
       <div>
-        {kitchenOrder.map((i) => <OrderCard
-          key={i.id} 
+        {kitchenOrder.map((i, index) => <OrderCard
+          key={index} 
           table={i.table}
           customer={i.customer}
           order={i.order.map(i => {
             return(
             <div>
-            <span>{i.Name},{i.count}</span>
+            {i.Name}{i.count}
             </div>
           )})}
           total={i.total}

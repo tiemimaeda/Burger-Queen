@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
 function Menu (props) {
   return (
-    <div key={props.item.id}>
+    <div>
         <Button
           className={css(styles.btnProducts)}
           Name={props.item.Name}

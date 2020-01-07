@@ -4,7 +4,7 @@ import React from 'react';
 const OrderCard = (props) => {
   return (
     <div>
-      <div id={props.id}>
+      <div>
         Mesa: {props.table}
         Cliente: {props.customer}
         Pedido: {props.order}  

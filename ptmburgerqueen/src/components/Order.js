@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   listItems: {
     display:'flex',
     alignItems: 'center',
-    width: '70%',
+    width: '50%',
     marginLeft: '2%',
   },
 
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    width: '40%',
+    width: '50%',
   },
 
   btnAddMinus: {
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     opacity: '0.7',
     border: 'none',
     borderRadius: '50%',
+    fontSize: '30px',
     fontWeight:'bold',
     height: '50px',
     width: '50px',
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
 
 function Order (props) {
   return (
-    <div key={props.item.id}>
+    <div>
       <div className={css(styles.order)}>
         <div className={css(styles.listItems)}>
           {props.item.Name} {props.item.Price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
