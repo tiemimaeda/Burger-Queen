@@ -3,49 +3,73 @@ import { StyleSheet, css } from 'aphrodite';
 import Button from './Button';
 
 const styles = StyleSheet.create({
-  btnAddMinus: {
-    fontWeight:'bolder',
-    height: '30px',
-    width: '30px',
-  },
-  order:{
-    display:"flex",
+  order: {
+    display: 'flex',
     justifyContent: 'space-between',
-  }
+    marginBottom: '3%',
+  },
+  
+  listItems: {
+    display:'flex',
+    alignItems: 'center',
+    width: '70%',
+    marginLeft: '2%',
+  },
+
+  btnsAndCounter: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    width: '40%',
+  },
+
+  btnAddMinus: {
+    backgroundColor: 'white',
+    opacity: '0.7',
+    border: 'none',
+    borderRadius: '50%',
+    fontWeight:'bold',
+    height: '50px',
+    width: '50px',
+  },
+
 });
 
 function Order (props) {
   return (
     <div key={props.item.id}>
       <div className={css(styles.order)}>
-        <span>{props.item.Name}</span>
-        {props.item.Price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+        <div className={css(styles.listItems)}>
+          {props.item.Name} {props.item.Price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+        </div>
         
-        <Button
-          className={css(styles.btnAddMinus)}
-          handleClick={(e) => {
-            props.minusItem(props.item)
-            e.preventDefault()
-          }} title={'-'}
-        />
+        <div className={css(styles.btnsAndCounter)}>
+          <Button
+            className={css(styles.btnAddMinus)}
+            handleClick={(e) => {
+              props.minusItem(props.item)
+              e.preventDefault()
+            }} title={'-'}
+          />
 
-        {props.item.count}
+          {props.item.count}
 
-        <Button
-          className={css(styles.btnAddMinus)}
-          handleClick={(e) => {
-            props.addItem(props.item)
-            e.preventDefault()
-          }}title={'+'}
-        /> 
+          <Button
+            className={css(styles.btnAddMinus)}
+            handleClick={(e) => {
+              props.addItem(props.item)
+              e.preventDefault()
+            }}title={'+'}
+          /> 
 
-        <Button
-          className={css(styles.btnAddMinus)}
-          handleClick={(e) => {
-            props.removeItem(props.item)
-            e.preventDefault()
-          }}title={'🗑'}
-        />     
+          <Button
+            className={css(styles.btnAddMinus)}
+            handleClick={(e) => {
+              props.removeItem(props.item)
+              e.preventDefault()
+            }}title={'🗑'}
+          />  
+        </div>   
       </div>
     </div>
   )

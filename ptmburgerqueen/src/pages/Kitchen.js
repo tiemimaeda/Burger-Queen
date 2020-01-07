@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import firestore from './utils/Firebase';
-
+import OrderCard from '../components/OrderCard';
 
 function Kitchen() {
+  const [kitchenOrder, setkitchenOrder] = useState([]);
 
   useEffect(() => {
     firestore
@@ -12,13 +13,23 @@ function Kitchen() {
           id: doc.id,
           ...doc.data()
         }))
-        console.log(order)
+        setkitchenOrder(order)
         })
   }, [])
 
-return (
-  <h2>Pedidos</h2>
-  
+  return (
+    <div>
+    <h2>Pedidos</h2>
+      <div>
+        {kitchenOrder.map((item) => <OrderCard
+          key={item.id} 
+          table={item.table}
+          customer={item.customer}
+          total={item.total}
+          />
+        )}
+      </div>
+    </div>
 )}
 
 export default Kitchen

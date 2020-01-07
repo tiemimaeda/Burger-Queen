@@ -11,7 +11,7 @@ import Order from '../components/Order';
 const styles = StyleSheet.create({
   floorPage: {
     display: 'flex',
-    fontFamily: 'Noto Sans JP sans-serif'
+    // fontFamily: 'Noto Sans JP sans-serif',
   },
 
   styleMenu: {
@@ -22,29 +22,29 @@ const styles = StyleSheet.create({
     borderRadius: '5px',
     marginLeft: '1%',
     marginRight: '1%',
-    backgroundColor: '#4F4F4F'
+    backgroundColor: '#4F4F4F',
   },
-
+  
   title: {
     textAlign: 'center',
   },
   
-  mealsContainer: {
+  // Menu side
+  btnMealsContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
     textAlign: 'center',
     marginBottom: '30px',
-    
   },
 
   btnMenu: {
-    width: '150px',
+    width: '160px',
     height: '50px',
     border: 'none',
     borderRadius: '6px',
     backgroundColor: '#287377',
     color: 'white',
-    fontSize: '16px',
+    fontSize: '18px',
     fontWeight: 'bold',
 
       ':hover': {
@@ -56,13 +56,12 @@ const styles = StyleSheet.create({
   productsList: {
     display:'flex',
     flexWrap:'wrap',
+    height: '350px',
     justifyContent:'space-evenly',
-    height:'350px',
-    width:'90%',
-    marginLeft: '20px',
-    overflow: 'auto',
+    marginBottom: '2%',
   },
 
+  // Order side
   inputsDiv: {
     display: 'flex',
     justifyContent: 'space-evenly',
@@ -70,24 +69,31 @@ const styles = StyleSheet.create({
   },
 
   inputsStyle: {
-    height: '25px',
-    width: '150px',
+    height: '30px',
+    width: '180px',
     textAlign: 'center',
     borderRadius: '5px',
     border: 'none',
+    fontSize: '18px',
   },
 
   itemsList: {
-    marginLeft: '2%',
     height: '350px',
     overflow: 'auto',
+    fontSize: '25px',
     color: 'white',
   },
 
-  btnSendOrder: {
+  total: {
+    display: 'flex',
+    flexDirection: 'column',
     marginLeft: '2%',
     marginBottom: '2%',
-    height:'40px',
+    fontSize: '25px',
+  },
+
+  btnSendOrder: {
+    height:'45px',
     width:'120px',
     border: 'none',
     borderRadius:'8px',
@@ -188,7 +194,7 @@ function ShowMenu() {
     <div className={css(styles.floorPage)}>
       <div className={css(styles.styleMenu)}>
         <p className={css(styles.title)}>MENU</p>
-        <div className={css(styles.mealsContainer)}>
+        <div className={css(styles.btnMealsContainer)}>
           <Button
             className={css(styles.btnMenu)}
             handleClick={(e) => {
@@ -249,14 +255,16 @@ function ShowMenu() {
           />)}
         </div>
 
-        <div>Total: {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</div>
-        
-        <Button className={css(styles.btnSendOrder)}
-          handleClick={(e) => {
-            sendOrder()
-            e.preventDefault()
-          }} title={'Enviar'}
-        />
+        <div className={css(styles.total)}>
+          Total: {total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+          
+          <Button className={css(styles.btnSendOrder)}
+            handleClick={(e) => {
+              sendOrder()
+              e.preventDefault()
+            }} title={'Enviar'}
+          />
+        </div>
       </div>
     </div>
   );

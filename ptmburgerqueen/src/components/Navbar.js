@@ -15,7 +15,7 @@ function Navbar () {
     <nav>
       <ul>
         <li className={css(styles.navItem)}>
-          <Link to="/floor">Salão</Link>
+          <Link to="/">Salão</Link>
         </li>
         <li className={css(styles.navItem)}>
           <Link to="/kitchen">Cozinha</Link>

@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from './components/Navbar';
-import ShowMenu from './pages/Floor';
+import Floor from './pages/Floor';
 import Kitchen from './pages/Kitchen';
 
 function App() {
@@ -15,9 +15,8 @@ function App() {
      <Navbar/>
     <div>
      <Switch>
-        <Route path="/floor"> <ShowMenu /> </Route>
-        <Route path="/kitchen"> <Kitchen /> </Route>
-        <Route path="/"> </Route>
+        <Route exact path="/" component={Floor}/>
+        <Route path="/kitchen" component={Kitchen}/>
 
       </Switch>
     </div>
