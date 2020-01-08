@@ -35,8 +35,7 @@ const styles = StyleSheet.create({
   btnMealsContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    marginBottom: '30px',
-    textAlign: 'center',
+    marginBottom: '5%',
   },
 
   btnMenu: {
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: '6px',
     backgroundColor: '#287377',
     color: 'white',
-    fontSize: '18px',
+    fontSize: '20px',
     fontWeight: 'bold',
 
       ':hover': {
@@ -58,20 +57,20 @@ const styles = StyleSheet.create({
   productsList: {
     display:'flex',
     flexWrap:'wrap',
-    height: '350px',
+    height: '100%',
     justifyContent:'space-evenly',
-    marginBottom: '2%',
+    overflow:'auto',
   },
 
   // Order side
   inputsDiv: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    marginBottom: '30px'
+    marginBottom: '5%'
   },
 
   inputsStyle: {
-    height: '30px',
+    height: '40px',
     width: '180px',
     textAlign: 'center',
     borderRadius: '5px',
@@ -82,16 +81,14 @@ const styles = StyleSheet.create({
   itemsList: {
     height: '350px',
     overflow: 'auto',
-    fontSize: '25px',
-    color: 'white',
+    fontSize: '22px',
   },
 
   total: {
     display: 'flex',
     flexDirection: 'column',
-    marginLeft: '2%',
-    marginBottom: '2%',
-    fontSize: '25px',
+    margin: '2%',
+    fontSize: '22px',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -104,7 +101,7 @@ const styles = StyleSheet.create({
     borderRadius:'8px',
     color: 'white',
     backgroundColor:'#287377',
-    fontSize:'17px',
+    fontSize:'24px',
     fontWeight:'bold',
     
     ':hover': {
@@ -172,7 +169,6 @@ function ShowMenu() {
     setTotal(total - item.Price)
   }
 
-
   function sendOrder() {
     if (customer && table) {
     firestore
@@ -198,6 +194,8 @@ function ShowMenu() {
   return (
     <div className={css(styles.floorPage)}>
       <div className={css(styles.styleMenu)}>
+        
+{/* Menu side */}
         <p className={css(styles.title)}>MENU</p>
         <div className={css(styles.btnMealsContainer)}>
           <Button
@@ -228,6 +226,7 @@ function ShowMenu() {
         </div>
       </div>
 
+{/* Order side */}
       <div className={css(styles.styleMenu)}>
         <p className={css(styles.title)}>RESUMO DO PEDIDO</p>
         <div className={css(styles.inputsDiv)}>

@@ -4,13 +4,13 @@ import Button from '../components/Button';
 
 const styles = StyleSheet.create({
   btnProducts: {
-    height: '80px',
-    width: '120px',
+    height: '90px',
+    width: '140px',
     marginBottom: '8%',
-    backgroundColor: '#FFF9C7',
+    backgroundColor: '#FEFFF0',
     border: 'none',
     borderRadius: '6px',
-    fontSize: '17px',
+    fontSize: '19px',
 
     ':hover': {
       backgroundColor: '#FF9305',

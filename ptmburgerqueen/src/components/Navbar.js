@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 const styles = StyleSheet.create({
   ul: {
     listStyleType: 'none',
-    margin: '0',
-    padding: '0',
+    // margin: '0',
+    // padding: '0',
     height: '60px',
     overflow: 'hidden',
     backgroundColor: '#212121',
-    textDecorationUnderline: 'none'
   },
   
   navItem: {
@@ -40,10 +39,10 @@ function Navbar () {
     <nav>
       <ul className={css(styles.ul)}>
         <li className={css(styles.navItem)}>
-          <Link className={css(styles.link)} to="/">Salão</Link>
+          <Link className={css(styles.link)} to="/kitchen">Cozinha</Link>
         </li>
         <li className={css(styles.navItem)}>
-          <Link className={css(styles.link)} to="/kitchen">Cozinha</Link>
+          <Link className={css(styles.link)} to="/">Salão</Link>
         </li>
       </ul>
     </nav>
