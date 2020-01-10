@@ -96,20 +96,21 @@ function Menu(props) {
                           type="radio"
                           value={extra.Name} 
                           onChange={() => 
-                            setSelectedExtra(extra.Name)} checked={extra.Name === selectedExtra}/>
+                            setSelectedExtra(extra.Name)} 
+                            checked={extra.Name === selectedExtra}/>
                       </div>
                     )
                 })}
 
-                <Button className={css(styles.btnAdd)}
-                   handleClick={(e) => {
-                    props.addItem(props.item, selectedExtra);
-                    e.preventDefault();
-                    setShow(!show);
-                    setSelectedExtra("")
-                  }}
-                  title={"Adicionar"}
-                />
+                  <Button className={css(styles.btnAdd)}
+                    handleClick={(e) => {
+                      props.addItem(props.item, selectedExtra);
+                      e.preventDefault();
+                      setShow(!show);
+                      setSelectedExtra("")
+                    }}
+                    title={"Adicionar"}
+                  />
                 </div>
               </div>
             : null
@@ -118,4 +119,5 @@ function Menu(props) {
     );
   }
 }
+
 export default Menu;

@@ -145,28 +145,31 @@ function ShowMenu() {
      setOrder (newOrder);
     }
     const extraPrice = extra ? 1: 0
-    setTotal(total + item.Price + extraPrice) 
+    setTotal(total + (item.Price + extraPrice)) 
   }
 
   function removeItem (item) {
     const index = (order.indexOf(item));
+    const extraPrice = item.extra ? 1 : 0;
+
     order.splice(index, 1);
     setOrder([...order]);
-    setTotal(total - (item.Price * item.count))
+    setTotal(total - ((item.Price + extraPrice) * item.count))
   }
 
-  function minusItem(item) {
-    const itemIndex = order.findIndex((el) => el.id === item.id);
-    const itemCount = order[itemIndex]
+  function minusItem(item, extra) {
+    const itemIndex = order.findIndex((el) => el.id === item.id && item.extra === extra);
+    const itemCount = order[itemIndex];
+
     if (itemCount.count === 1) {
       removeItem(itemCount);
 
     } else {
-     const newOrder = [...order];
-     newOrder[itemIndex].count += -1;
-     setOrder ([...order]);
+      itemCount.count += -1;
+      setOrder ([...order]);
     }
-    setTotal(total - item.Price)
+    const extraPrice = extra ? 1 : 0;
+    setTotal(total - (item.Price + extraPrice))
   }
 
   function sendOrder() {
@@ -218,11 +221,13 @@ function ShowMenu() {
         </div>
         
         <div className={css(styles.productsList)}>
-          {categoryItems.map((item) => <Menu 
-            key={item.id} 
-            item={item} 
-            addItem={addItem} 
-          />)}
+          {categoryItems.map((item) => 
+            <Menu 
+              key={item.id} 
+              item={item} 
+              addItem={addItem} 
+            />
+          )}
         </div>
       </div>
 
@@ -234,7 +239,7 @@ function ShowMenu() {
             className={css(styles.inputsStyle)} 
             class='input' 
             type='text' 
-            holder='Nome do Cliente'
+            holder='Cliente'
             value={customer}
             handleChange={e => setCustomer(e.currentTarget.value)} 
           />
@@ -243,20 +248,22 @@ function ShowMenu() {
             className={css(styles.inputsStyle)} 
             class='input' 
             type='text' 
-            holder='Número da Mesa'
+            holder='Mesa'
             value={table}
             handleChange={e => setTable(e.currentTarget.value)} 
           />
         </div>
 
         <div className={css(styles.itemsList)}>
-          {order.map((item) => <Order 
-            key={item.id} 
-            item={item} 
-            addItem={addItem} 
-            removeItem={removeItem} 
-            minusItem={minusItem} 
-          />)}
+          {order.map((item) => 
+            <Order 
+              key={item.id} 
+              item={item} 
+              addItem={addItem} 
+              removeItem={removeItem} 
+              minusItem={minusItem} 
+            />
+          )}
         </div>
 
         <div className={css(styles.total)}>

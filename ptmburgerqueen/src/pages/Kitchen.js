@@ -6,6 +6,7 @@ import OrderCard from '../components/OrderCard';
 const styles = StyleSheet.create({
   
   kitchenPage: {
+    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     borderRadius: '8px',
@@ -39,22 +40,23 @@ function Kitchen() {
 
   return (
     <div className={css(styles.kitchenPage)}>
-      <p className={css(styles.title)}>PEDIDOS</p>
-        <>
-          {kitchenOrder.map((i, index) => <OrderCard
-            key={index} 
-            table={i.table}
-            customer={i.customer}
-            order={i.order.map(i => {
-              return(
-              <div>
-              {i.count}{i.Name}
-              </div>
-            )})}
-            total={i.total}
+      < p className={css(styles.title)}>PEDIDOS PENDENTES</p>
+        <div className={css(styles.orderContainer)}>
+          {kitchenOrder.map((i, index) => 
+            <OrderCard
+              key={index} 
+              table={i.table}
+              customer={i.customer}
+              order={i.order.map(i => {
+                return(
+                <div>
+                {i.count}
+                {i.Name}
+                </div>
+              )})}
             />
-            )}
-        </>
+              )}
+        </div>
     </div>
 )
 };

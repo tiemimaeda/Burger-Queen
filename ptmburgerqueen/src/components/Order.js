@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
   },
 
   btnCounterDel: {
-    opacity: '0.8',
     border: 'none',
     borderRadius: '50%',
     fontSize: '30px',
@@ -51,7 +50,7 @@ function Order (props) {
       <div className={css(styles.order)}>
         <div className={css(styles.listItems)}>
           <span>{props.item.Name}</span> 
-          <span>- {props.item.extra}</span>
+          <span> + {props.item.extra}</span>
           {itemPrice.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
         </div>
         
@@ -59,9 +58,10 @@ function Order (props) {
           <Button
             className={css(styles.btnCounterDel)}
             handleClick={(e) => {
-              props.minusItem(props.item)
+              props.minusItem(props.item, props.item.extra)
               e.preventDefault()
-            }} title={'-'}
+            }} 
+            title={'-'}
           />
 
           {props.item.count}
@@ -69,9 +69,10 @@ function Order (props) {
           <Button
             className={css(styles.btnCounterDel)}
             handleClick={(e) => {
-              props.addItem(props.item)
+              props.addItem(props.item, props.item.extra)
               e.preventDefault()
-            }}title={'+'}
+            }}
+            title={'+'}
           /> 
 
           <Button
@@ -79,7 +80,8 @@ function Order (props) {
             handleClick={(e) => {
               props.removeItem(props.item)
               e.preventDefault()
-            }}title={'🗑️'}
+            }}
+            title={'🗑️'}
           />  
         </div>   
       </div>
