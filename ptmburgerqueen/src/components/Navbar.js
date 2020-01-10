@@ -48,6 +48,9 @@ function Navbar () {
         <nav>
           <ul className={css(styles.ul)}>
             <li className={css(styles.navItem)}>
+              <Link className={css(styles.link)} to="/server">Pedidos</Link>
+            </li>
+            <li className={css(styles.navItem)}>
               <Link className={css(styles.link)} to="/kitchen">Cozinha</Link>
             </li>
             <li className={css(styles.navItem)}>
