@@ -4,9 +4,7 @@ import Button from '../components/Button';
 
 const styles = StyleSheet.create({ 
   ordercard: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '30%',
+    width: '80%',
     margin: '2%',
     padding: '2%',
     backgroundColor: '#FFFDE0',
@@ -29,17 +27,19 @@ const styles = StyleSheet.create({
 const OrderCard = (props) => {
   return (
     <div className={css(styles.ordercard)}>
-      Mesa: {props.table}
+      <div>
+        Mesa: {props.table}
+      </div>
       Cliente: {props.customer}
-      Pedido: {props.order}  
+      {props.order}  
       {props.total}
 
       <Button
       className={css(styles.btnOrderReady)}
-      // handleClick={(e) => {
-      //   props.ready(props.item)
-      //   e.preventDefault()
-      // }} 
+      handleClick={(e) => {
+        props.readyOrder(props.item)
+        e.preventDefault()
+      }} 
       title={'Pedido Pronto'}
       />
     </div>

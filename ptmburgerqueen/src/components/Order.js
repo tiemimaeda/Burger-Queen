@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     margin: '1% 1% 3% 1%',
-    backgroundColor: '#FEFFF0',
+    backgroundColor: '#707070',
     borderRadius: '3px',
   },
   

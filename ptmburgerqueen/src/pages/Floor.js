@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import growl from "growl-alert";
-import "growl-alert/dist/growl-alert.css";
+import growl from 'growl-alert';
+import 'growl-alert/dist/growl-alert.css';
 import firestore from './utils/Firebase';
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   styleMenu: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
     width: '50%',
+    height: '600px',
     borderRadius: '8px',
     margin: '0% 1% 0% 1%',
     backgroundColor: '#4F4F4F',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   btnMealsContainer: {
     display: 'flex',
     justifyContent: 'space-evenly',
-    marginBottom: '5%',
+    marginBottom: '5%', 
   },
 
   btnMenu: {
@@ -56,9 +56,8 @@ const styles = StyleSheet.create({
   productsList: {
     display:'flex',
     flexWrap:'wrap',
-    // height: '350px',
     justifyContent:'space-evenly',
-    // overflow:'auto',
+    overflow:'auto',
   },
 
   // Order side
@@ -137,7 +136,12 @@ function ShowMenu() {
   function addItem(item, extra) {
     const itemIndex = order.findIndex((el) => el.id === item.id && el.extra === extra);
     if (itemIndex === -1) {
+      if(extra){
       setOrder([...order, {...item, count: 1, extra}]);
+    
+      } else {
+      setOrder([...order, {...item, count: 1}])
+      }
 
     } else {
      const newOrder = [...order];
@@ -180,7 +184,9 @@ function ShowMenu() {
         customer,
         table,
         order,
-        total
+        total,
+        status: 'pending',
+        addTime: new Date().getTime() 
       })
       .then(() => {
         growl.success('Pedido enviado com sucesso!')

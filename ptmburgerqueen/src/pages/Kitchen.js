@@ -6,12 +6,17 @@ import OrderCard from '../components/OrderCard';
 const styles = StyleSheet.create({
   
   kitchenPage: {
+    display: 'flex',    
+  },
+
+  cardOrdersContainer: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    width: '50%',
+    height: '600px',
     borderRadius: '8px',
-    margin: '2%',
-    backgroundColor: '#4F4F4F',    
+    margin: '0% 1% 0% 1%',
+    backgroundColor: '#4F4F4F',
   },
   
   title: {
@@ -21,10 +26,17 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   
+  orderContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    overflow: 'auto',
+    flexWrap: 'wrap',
+  }
 });
 
 function Kitchen() {
   const [kitchenOrder, setkitchenOrder] = useState([]);
+  // const [status, setStatus] = useState([]);
 
   useEffect(() => {
     firestore
@@ -38,25 +50,37 @@ function Kitchen() {
         })
   }, [])
 
+  function readyOrder(){
+
+  } 
+
   return (
     <div className={css(styles.kitchenPage)}>
-      < p className={css(styles.title)}>PEDIDOS PENDENTES</p>
-        <div className={css(styles.orderContainer)}>
-          {kitchenOrder.map((i, index) => 
-            <OrderCard
-              key={index} 
-              table={i.table}
-              customer={i.customer}
-              order={i.order.map(i => {
-                return(
-                <div>
-                {i.count}
-                {i.Name}
-                </div>
-              )})}
-            />
-              )}
+      <div className={css(styles.cardOrdersContainer)}>
+        < p className={css(styles.title)}>PEDIDOS PENDENTES</p>
+          <div className={css(styles.orderContainer)}>
+            {kitchenOrder.map((i, index) => 
+              <OrderCard
+                key={index} 
+                table={i.table}
+                customer={i.customer}
+                order={i.order.map(i => {
+                  return(
+                  <div>
+                  {i.count}
+                  {i.Name}
+                  </div>
+                )})}
+              />
+                )}
+          </div>
         </div>
+
+        <div className={css(styles.cardOrdersContainer)}>
+          <p className={css(styles.title)}>PEDIDOS PRONTOS</p>
+
+        </div>
+
     </div>
 )
 };
