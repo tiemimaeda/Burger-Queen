@@ -19,8 +19,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     width: '50%',
     borderRadius: '8px',
-    marginLeft: '1%',
-    marginRight: '1%',
+    margin: '0% 1% 0% 1%',
     backgroundColor: '#4F4F4F',
   },
   
@@ -57,9 +56,9 @@ const styles = StyleSheet.create({
   productsList: {
     display:'flex',
     flexWrap:'wrap',
-    height: '100%',
+    // height: '350px',
     justifyContent:'space-evenly',
-    overflow:'auto',
+    // overflow:'auto',
   },
 
   // Order side
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   },
 
   itemsList: {
-    height: '350px',
+    height: '100%',
     overflow: 'auto',
     fontSize: '22px',
   },
@@ -135,17 +134,18 @@ function ShowMenu() {
  
   const categoryItems = category === 'Lanches' ? lunchItems : breakfastItems;
 
-  function addItem(item) {
-    const itemIndex = order.findIndex((el) => el.id === item.id);
+  function addItem(item, extra) {
+    const itemIndex = order.findIndex((el) => el.id === item.id && el.extra === extra);
     if (itemIndex === -1) {
-      setOrder([...order, {...item, count: 1}]);
+      setOrder([...order, {...item, count: 1, extra}]);
 
     } else {
      const newOrder = [...order];
      newOrder[itemIndex].count += 1;
      setOrder (newOrder);
     }
-    setTotal(total + item.Price) 
+    const extraPrice = extra ? 1: 0
+    setTotal(total + item.Price + extraPrice) 
   }
 
   function removeItem (item) {

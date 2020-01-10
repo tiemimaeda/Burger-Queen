@@ -3,10 +3,17 @@ import { StyleSheet, css } from 'aphrodite';
 import { Link } from "react-router-dom";
 
 const styles = StyleSheet.create({
+  header: {
+    display: 'flex',
+  },
+
+  styleLogo: {
+    maxWidth: '40%',
+    height: 'auto',
+  },
+  
   ul: {
     listStyleType: 'none',
-    // margin: '0',
-    // padding: '0',
     height: '60px',
     overflow: 'hidden',
     backgroundColor: '#212121',
@@ -36,17 +43,19 @@ const styles = StyleSheet.create({
 
 function Navbar () {
   return (
-    <nav>
-      <ul className={css(styles.ul)}>
-        <li className={css(styles.navItem)}>
-          <Link className={css(styles.link)} to="/kitchen">Cozinha</Link>
-        </li>
-        <li className={css(styles.navItem)}>
-          <Link className={css(styles.link)} to="/">Salão</Link>
-        </li>
-      </ul>
-    </nav>
-
+      <header className={css(styles.header)}>
+        <img className={css(styles.styleLogo)} src="/images/BQlogo.png" alt="Logotipo" />
+        <nav>
+          <ul className={css(styles.ul)}>
+            <li className={css(styles.navItem)}>
+              <Link className={css(styles.link)} to="/kitchen">Cozinha</Link>
+            </li>
+            <li className={css(styles.navItem)}>
+              <Link className={css(styles.link)} to="/">Salão</Link>
+            </li>
+          </ul>
+        </nav>
+    </header>
   );
 };
   

@@ -1,23 +1,36 @@
 import React from 'react';
-// import Button from '../components/Button';
+import { StyleSheet, css } from 'aphrodite';
+import Button from '../components/Button';
+
+const styles = StyleSheet.create({ 
+  ordercard: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '300px',
+    margin: '2%',
+    backgroundColor: '#FFFDE0',
+    borderRadius: '5px',
+
+  }
+});
 
 const OrderCard = (props) => {
   return (
-    <div>
-      <div>
-        Mesa: {props.table}
-        Cliente: {props.customer}
+    <div className={css(styles.ordercard)}>
+        <div>
+          Mesa: {props.table}
+          Cliente: {props.customer}
+        </div>
         Pedido: {props.order}  
         Total: {props.total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
-      </div>
 
-      {/* <Button
+      <Button
       className={props.btnOrderReady}
       handleClick={(e) => {
         props.ready(props.item)
         e.preventDefault()
       }} title={'Pedido Pronto'}
-      /> */}
+      />
     </div>
   )
 };

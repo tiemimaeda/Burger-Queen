@@ -43,12 +43,16 @@ const styles = StyleSheet.create({
 });
 
 function Order (props) {
+  const extraPrice = props.item.extra ? 1 : 0;
+  const itemPrice = props.item.Price + extraPrice;
+
   return (
     <div>
       <div className={css(styles.order)}>
         <div className={css(styles.listItems)}>
-          {props.item.Name} 
-          {props.item.Price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+          <span>{props.item.Name}</span> 
+          <span>- {props.item.extra}</span>
+          {itemPrice.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
         </div>
         
         <div className={css(styles.counterContainer)}>
@@ -75,7 +79,7 @@ function Order (props) {
             handleClick={(e) => {
               props.removeItem(props.item)
               e.preventDefault()
-            }}title={'🗑'}
+            }}title={'🗑️'}
           />  
         </div>   
       </div>

@@ -4,16 +4,22 @@ import { StyleSheet, css } from 'aphrodite';
 import OrderCard from '../components/OrderCard';
 
 const styles = StyleSheet.create({
+  
+  kitchenPage: {
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    borderRadius: '8px',
+    margin: '2%',
+    backgroundColor: '#4F4F4F',    
+  },
+  
   title: {
     textAlign: 'center',
     fontSize: '20px',
     fontWeight: 'bold',
-    // color: 'white',
+    color: 'white',
   },
-
-  banana: {
-    backgroundColor: '#FFF9C7'
-  }
+  
 });
 
 function Kitchen() {
@@ -32,23 +38,23 @@ function Kitchen() {
   }, [])
 
   return (
-    <div className={css(styles.banana)}>
-    <p className={css(styles.title)}>Pedidos</p>
-      <div>
-        {kitchenOrder.map((i, index) => <OrderCard
-          key={index} 
-          table={i.table}
-          customer={i.customer}
-          order={i.order.map(i => {
-            return(
-            <div>
-            {i.Name}{i.count}
-            </div>
-          )})}
-          total={i.total}
-          />
-          )}
-      </div>
+    <div className={css(styles.kitchenPage)}>
+      <p className={css(styles.title)}>PEDIDOS</p>
+        <>
+          {kitchenOrder.map((i, index) => <OrderCard
+            key={index} 
+            table={i.table}
+            customer={i.customer}
+            order={i.order.map(i => {
+              return(
+              <div>
+              {i.count}{i.Name}
+              </div>
+            )})}
+            total={i.total}
+            />
+            )}
+        </>
     </div>
 )
 };
