@@ -22,37 +22,43 @@ const styles = StyleSheet.create({
   
   title: {
     textAlign: 'center',
-    fontSize: '20px',
+    fontSize: '24px',
     fontWeight: 'bold',
     color: 'white',
   },
   
+  orderContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'auto',
+    flexWrap: 'wrap',
+  },
+
   ordercard: {
-    width: '80%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '85%',
     margin: '2%',
     padding: '2%',
-    backgroundColor: '#FFFDE0',
+    backgroundColor: '#FFFDE0', 
     borderRadius: '5px',
+    fontSize: '22px',
   },
 
   btnOrderReady: {
     margin: '3% 0 3% 0',
-    width: '120px',
-    height:'30px',
+    width: '150px',
+    height:'50px',
     backgroundColor:'green',
     borderRadius:'5px',
     border:'none',
     color: 'white',
-    fontSize:'15px',
+    fontSize:'19px',
     fontWeight:'bold',
   },
 
-  orderContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    overflow: 'auto',
-    flexWrap: 'wrap',
-  }
 });
 
 function Kitchen() {
@@ -92,62 +98,60 @@ function Kitchen() {
   return (
     <div className={css(styles.kitchenPage)}>
       <div className={css(styles.cardOrdersContainer)}>
-        < p className={css(styles.title)}>PEDIDOS PENDENTES</p>
+        <p className={css(styles.title)}>PEDIDOS PENDENTES</p>
           <div className={css(styles.orderContainer)}>
-            {pending.map((i, index) => 
+            {pending.map((item, index) => 
             <div className={css(styles.ordercard)}>
               <OrderCard
                 key={index} 
-                table={i.table}
-                customer={i.customer}
-                order={i.order.map(i => {
+                table={item.table}
+                customer={item.customer}
+                order={item.order.map(item => {
                   return(
-                  <div>
-                  {i.count}
-                  {i.Name}
-                  </div>
+                    <div>
+                      {item.count}
+                      {item.Name} {item.extra}
+                    </div>
                 )})}
               />
                 <Button
                   className={css(styles.btnOrderReady)}
                   handleClick={(e) => {
-                    orderDone(i)
+                    orderDone(item)
                     e.preventDefault()
                   }}
                   title={'Pedido Pronto'}
                 />
-                </div>
-                )}
-
+            </div>
+            )}
+          </div>
       </div>
-        </div>
 
-        <div className={css(styles.cardOrdersContainer)}>
+      <div className={css(styles.cardOrdersContainer)}>
         <p className={css(styles.title)}>PEDIDOS PRONTOS</p>
         <div className={css(styles.orderContainer)}>
-          {done.map((i, index) =>
+          {done.map((item, index) =>
             <div className={css(styles.ordercard)}>
               <OrderCard
                 key={index}
-                table={i.table}
-                customer={i.customer}
-                orderDone={() => orderDone(i)}
-                order={i.order.map((i, index) => {
+                table={item.table}
+                customer={item.customer}
+                orderDone={() => orderDone(item)}
+                order={item.order.map((item, index) => {
                   return (
                     <div key={index}>
-                      {i.count}
-                      {i.Name}
+                      {item.count}
+                      {item.Name} {item.extra}
                     </div>
                   )
                 })}
               />
             </div>
           )}
-          </div>
-
+        </div>
+      </div>
     </div>
-    </div>
-)
+  )
 };
 
 export default Kitchen;

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   
   navItem: {
-    float: 'right',
+    float: 'left',
     display: 'block',
     padding: '14px 16px',
     fontSize: '24px',
@@ -48,13 +48,13 @@ function Navbar () {
         <nav>
           <ul className={css(styles.ul)}>
             <li className={css(styles.navItem)}>
-              <Link className={css(styles.link)} to="/server">Pedidos</Link>
+              <Link className={css(styles.link)} to="/">Salão</Link>
             </li>
             <li className={css(styles.navItem)}>
               <Link className={css(styles.link)} to="/kitchen">Cozinha</Link>
             </li>
             <li className={css(styles.navItem)}>
-              <Link className={css(styles.link)} to="/">Salão</Link>
+              <Link className={css(styles.link)} to="/server">Pedidos</Link>
             </li>
           </ul>
         </nav>
