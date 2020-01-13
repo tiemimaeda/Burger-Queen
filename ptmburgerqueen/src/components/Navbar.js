@@ -54,7 +54,7 @@ function Navbar () {
               <Link className={css(styles.link)} to="/kitchen">Cozinha</Link>
             </li>
             <li className={css(styles.navItem)}>
-              <Link className={css(styles.link)} to="/server">Pedidos</Link>
+              <Link className={css(styles.link)} to="/waiter">Pedidos</Link>
             </li>
           </ul>
         </nav>

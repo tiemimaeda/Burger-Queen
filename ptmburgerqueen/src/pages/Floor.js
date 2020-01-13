@@ -109,6 +109,11 @@ const styles = StyleSheet.create({
   },
 })
 
+const option = {
+  fadeAway: true,
+  fadeAwayTimeout: 2000,
+};
+
 function ShowMenu() {
   const [category, setCategory] = useState('Café da Manhã');
   const [customer, setCustomer] = useState('');
@@ -186,17 +191,17 @@ function ShowMenu() {
         order,
         total,
         status: 'pending',
-        addTime: new Date().getTime() 
+        sendTime: new Date().getTime() 
       })
       .then(() => {
-        growl.success('Pedido enviado com sucesso!')
+        growl.success({text: 'Pedido enviado com sucesso!', ...option})
         setCustomer('')
         setTable('')
         setOrder([])
         setTotal(0)
       })}
       else {
-        growl.warning('Preencha nome e mesa')
+        growl.warning({text: 'Preencha nome e mesa', ...option})
       }
   } 
 

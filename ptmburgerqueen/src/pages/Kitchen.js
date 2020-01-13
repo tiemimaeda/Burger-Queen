@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import firestore from './utils/Firebase';
 import { StyleSheet, css } from 'aphrodite';
+import growl from 'growl-alert';
+import 'growl-alert/dist/growl-alert.css';
 import OrderCard from '../components/OrderCard';
 import Button from '../components/Button';
 
@@ -61,6 +63,11 @@ const styles = StyleSheet.create({
 
 });
 
+const option = {
+  fadeAway: true,
+  fadeAwayTimeout: 2000,
+};
+
 function Kitchen() {
   const [pending, setPending] = useState([]);
   const [done, setDone] = useState([]);
@@ -68,7 +75,7 @@ function Kitchen() {
   useEffect(() => {
     firestore
       .collection('Orders')
-      .orderBy('addTime', 'asc')
+      .orderBy('sendTime', 'asc')
       .get().then((snapshot) => {
         const order = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -91,24 +98,31 @@ function Kitchen() {
       const newPending = pending.filter((el) => el.id !== item.id);
       setPending(newPending);
 
-      const newDone = [...done, {...item, status: 'done'}];
+      const newDone = [...done, {...item, status: 'done', time: new Date().getTime()}];
       setDone(newDone);
+
+      growl.success({text: 'Pedido pronto para entrega!', ...option})
   } 
+
+function time(readyTime, orderTime){
+  const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
+  return `${Math.abs(Math.round(diffTime))}min`
+}
 
   return (
     <div className={css(styles.kitchenPage)}>
       <div className={css(styles.cardOrdersContainer)}>
         <p className={css(styles.title)}>PEDIDOS PENDENTES</p>
           <div className={css(styles.orderContainer)}>
-            {pending.map((item, index) => 
-            <div className={css(styles.ordercard)}>
+            {pending.map((item) => 
+            <div key={item.id} className={css(styles.ordercard)}>
               <OrderCard
-                key={index} 
+                sendTime={new Date(item.sendTime).toLocaleTimeString('pt-BR')}
                 table={item.table}
                 customer={item.customer}
-                order={item.order.map(item => {
+                order={item.order.map((item, index) => {
                   return(
-                    <div>
+                    <div key={index}>
                       {item.count}
                       {item.Name} {item.extra}
                     </div>
@@ -130,10 +144,10 @@ function Kitchen() {
       <div className={css(styles.cardOrdersContainer)}>
         <p className={css(styles.title)}>PEDIDOS PRONTOS</p>
         <div className={css(styles.orderContainer)}>
-          {done.map((item, index) =>
-            <div className={css(styles.ordercard)}>
+          {done.map((item) =>
+            <div key={item.id} className={css(styles.ordercard)}>
               <OrderCard
-                key={index}
+                sendTime={time(new Date(item.time), new Date(item.sendTime))}
                 table={item.table}
                 customer={item.customer}
                 orderDone={() => orderDone(item)}

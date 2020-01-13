@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import firestore from './utils/Firebase';
 import { StyleSheet, css } from 'aphrodite';
+import growl from 'growl-alert';
+import 'growl-alert/dist/growl-alert.css';
 import OrderCard from '../components/OrderCard';
 import Button from '../components/Button';
 
@@ -61,6 +63,11 @@ const styles = StyleSheet.create({
 
 });
 
+const option = {
+  fadeAway: true,
+  fadeAwayTimeout: 2000,
+};
+
 function Waiter() {
   const [done, setDone] = useState([]);
   const [delivered, setDelivered] = useState([]);
@@ -68,7 +75,7 @@ function Waiter() {
   useEffect(() => {
     firestore
       .collection('Orders')
-      .orderBy('addTime', 'asc')
+      .orderBy('sendTime', 'asc')
       .get().then((snapshot) => {
         const order = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -85,30 +92,37 @@ function Waiter() {
       .doc(item.id)
       .update({
         status: 'delivered',
-        // time: new Date().getTime()
+        time: new Date().getTime()
       })
 
       const newDone = done.filter((el) => el.id !== item.id);
       setDone(newDone);
 
-      const newDelivered = [...delivered, {...item, status: 'delivered'}];
+      const newDelivered = [...delivered, {...item, status: 'delivered', time: new Date().getTime()}];
       setDelivered(newDelivered);
+
+      growl.success({text: 'Pedido entregue!', ...option})
+
   } 
+
+  function time(readyTime, orderTime){
+    const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
+    return `${Math.abs(Math.round(diffTime))}min`
+  }
 
   return (
     <div className={css(styles.kitchenPage)}>
       <div className={css(styles.cardOrdersContainer)}>
         <p className={css(styles.title)}>PEDIDOS PRONTOS</p>
           <div className={css(styles.orderContainer)}>
-            {done.map((item, index) => 
-            <div className={css(styles.ordercard)}>
+            {done.map((item) => 
+            <div key={item.id} className={css(styles.ordercard)}>
               <OrderCard
-                key={index} 
                 table={item.table}
                 customer={item.customer}
-                order={item.order.map(item => {
+                order={item.order.map((item, index) => {
                   return(
-                    <div>
+                    <div key={index}>
                       {item.count}
                       {item.Name} {item.extra}
                     </div>
@@ -130,10 +144,10 @@ function Waiter() {
       <div className={css(styles.cardOrdersContainer)}>
         <p className={css(styles.title)}>PEDIDOS ENTREGUES</p>
         <div className={css(styles.orderContainer)}>
-          {delivered.map((item, index) =>
-            <div className={css(styles.ordercard)}>
+          {delivered.map((item) =>
+            <div key={item.id} className={css(styles.ordercard)}>
               <OrderCard
-                key={index}
+                sendTime={time(new Date(item.time), new Date(item.sendTime))}
                 table={item.table}
                 customer={item.customer}
                 orderDelivered={() => orderDelivered(item)}
@@ -141,7 +155,7 @@ function Waiter() {
                   return (
                     <div key={index}>
                       {item.count}
-                      {item.Name} {item.extra}
+                      {item.Name} {item.extra}  
                     </div>
                   )
                 })}
