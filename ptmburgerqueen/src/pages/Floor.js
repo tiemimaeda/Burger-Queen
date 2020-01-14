@@ -134,7 +134,7 @@ function ShowMenu() {
         setBreakfastItems(fullMenu.filter(doc => doc.Category === 'Café da Manhã'));
         setLunchItems(fullMenu.filter(doc => doc.Category === 'Lanches'));
       })
-  }, [])
+  }, []);
  
   const categoryItems = category === 'Lanches' ? lunchItems : breakfastItems;
 
@@ -155,7 +155,7 @@ function ShowMenu() {
     }
     const extraPrice = extra ? 1: 0
     setTotal(total + (item.Price + extraPrice)) 
-  }
+  };
 
   function removeItem (item) {
     const index = (order.indexOf(item));
@@ -164,7 +164,7 @@ function ShowMenu() {
     order.splice(index, 1);
     setOrder([...order]);
     setTotal(total - ((item.Price + extraPrice) * item.count))
-  }
+  };
 
   function minusItem(item, extra) {
     const itemIndex = order.findIndex((el) => el.id === item.id && item.extra === extra);
@@ -179,7 +179,7 @@ function ShowMenu() {
     }
     const extraPrice = extra ? 1 : 0;
     setTotal(total - (item.Price + extraPrice))
-  }
+  };
 
   function sendOrder() {
     if (customer && table) {
@@ -203,13 +203,11 @@ function ShowMenu() {
       else {
         growl.warning({text: 'Preencha nome e mesa', ...option})
       }
-  } 
+  };
 
   return (
     <div className={css(styles.floorPage)}>
       <div className={css(styles.styleMenu)}>
-        
-{/* Menu side */}
         <p className={css(styles.title)}>MENU</p>
         <div className={css(styles.btnMealsContainer)}>
           <Button
@@ -242,7 +240,6 @@ function ShowMenu() {
         </div>
       </div>
 
-{/* Order side */}
       <div className={css(styles.styleMenu)}>
         <p className={css(styles.title)}>RESUMO DO PEDIDO</p>
         <div className={css(styles.inputsDiv)}>
@@ -252,7 +249,9 @@ function ShowMenu() {
             type='text' 
             holder='Cliente'
             value={customer}
-            handleChange={e => setCustomer(e.currentTarget.value)} 
+            handleChange={e => 
+              setCustomer(e.currentTarget.value)
+            } 
           />
 
           <Input 
@@ -261,7 +260,9 @@ function ShowMenu() {
             type='text' 
             holder='Mesa'
             value={table}
-            handleChange={e => setTable(e.currentTarget.value)} 
+            handleChange={e => 
+              setTable(e.currentTarget.value)
+            } 
           />
         </div>
 
@@ -284,7 +285,8 @@ function ShowMenu() {
             handleClick={(e) => {
               sendOrder()
               e.preventDefault()
-            }} title={'Enviar'}
+            }} 
+            title={'Enviar'}
           />
         </div>
       </div>

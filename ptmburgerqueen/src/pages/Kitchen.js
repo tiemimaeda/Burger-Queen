@@ -84,7 +84,7 @@ function Kitchen() {
        setPending(order.filter(doc => doc.status === 'pending'))
        setDone(order.filter(doc => doc.status === 'done'))
       })
-  }, [])
+  }, []);
 
   function orderDone(item){
     firestore
@@ -102,12 +102,12 @@ function Kitchen() {
       setDone(newDone);
 
       growl.success({text: 'Pedido pronto para entrega!', ...option})
-  } 
+  }; 
 
-function time(readyTime, orderTime){
-  const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
-  return `${Math.abs(Math.round(diffTime))} min`
-}
+  function time(readyTime, orderTime){
+    const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
+    return `${Math.abs(Math.round(diffTime))} min`
+  };
 
   return (
     <div className={css(styles.kitchenPage)}>
@@ -128,14 +128,14 @@ function time(readyTime, orderTime){
                   </div>
               )})}
             />
-              <Button
-                className={css(styles.btnOrderReady)}
-                handleClick={(e) => {
-                  orderDone(item)
-                  e.preventDefault()
-                }}
-                title={'Pedido Pronto'}
-              />
+            <Button
+              className={css(styles.btnOrderReady)}
+              handleClick={(e) => {
+                orderDone(item)
+                e.preventDefault()
+              }}
+              title={'Pedido Pronto'}
+            />
           </div>
           )}
         </div>
@@ -145,22 +145,22 @@ function time(readyTime, orderTime){
         <p className={css(styles.title)}>PEDIDOS PRONTOS</p>
         <div className={css(styles.orderContainer)}>
           {done.map((item) =>
-            <div key={item.id} className={css(styles.ordercard)}>
-              <OrderCard
-                sendTime={time(new Date(item.time), new Date(item.sendTime))}
-                table={item.table}
-                customer={item.customer}
-                orderDone={() => orderDone(item)}
-                order={item.order.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      {item.count}
-                      {item.Name} {item.extra}
-                    </div>
-                  )
-                })}
-              />
-            </div>
+          <div key={item.id} className={css(styles.ordercard)}>
+            <OrderCard
+              sendTime={time(new Date(item.time), new Date(item.sendTime))}
+              table={item.table}
+              customer={item.customer}
+              orderDone={() => orderDone(item)}
+              order={item.order.map((item, index) => {
+                return (
+                  <div key={index}>
+                    {item.count}
+                    {item.Name} {item.extra}
+                  </div>
+                )
+              })}
+            />
+          </div>
           )}
         </div>
       </div>

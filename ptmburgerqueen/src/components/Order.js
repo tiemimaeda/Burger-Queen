@@ -59,7 +59,7 @@ function Order (props) {
             className={css(styles.btnCounterDel)}
             handleClick={(e) => {
               props.minusItem(props.item, props.item.extra)
-              e.preventDefault()
+              e.preventDefault();
             }} 
             title={'-'}
           />
@@ -70,7 +70,7 @@ function Order (props) {
             className={css(styles.btnCounterDel)}
             handleClick={(e) => {
               props.addItem(props.item, props.item.extra)
-              e.preventDefault()
+              e.preventDefault();
             }}
             title={'+'}
           /> 
@@ -79,7 +79,7 @@ function Order (props) {
             className={css(styles.btnCounterDel)}
             handleClick={(e) => {
               props.removeItem(props.item)
-              e.preventDefault()
+              e.preventDefault();
             }}
             title={'🗑️'}
           />  

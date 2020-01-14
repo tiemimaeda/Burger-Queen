@@ -49,6 +49,7 @@ Eu como garçom/garçonete quero ver os pedidos que estão prontos para entregá
 
 * HTML5
 * JavasScript (ES6)
+* Firebase
 * Aphrodite (CSS)
 * React Hooks
 * growl-alert

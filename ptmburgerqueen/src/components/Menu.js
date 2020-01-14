@@ -81,7 +81,7 @@ function Menu(props) {
           Name={props.item.Name}
           Price={props.item.Price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
           handleClick={(e) => {
-            setShow(!show)
+            setShow(!show);
           }}
         />
         {
@@ -97,7 +97,7 @@ function Menu(props) {
                           value={extra.Name} 
                           onChange={() => 
                             setSelectedExtra(extra.Name)} 
-                            checked={extra.Name === selectedExtra}/>
+                            checked={extra.Name === selectedExtra}/>;
                       </div>
                     )
                 })}
@@ -107,7 +107,7 @@ function Menu(props) {
                       props.addItem(props.item, selectedExtra);
                       e.preventDefault();
                       setShow(!show);
-                      setSelectedExtra('')
+                      setSelectedExtra('');
                     }}
                     title={'Adicionar'}
                   />

@@ -84,7 +84,7 @@ function Waiter() {
        setDone(order.filter(doc => doc.status === 'done'))
        setDelivered(order.filter(doc => doc.status === 'delivered'))
       })
-  }, [])
+  }, []);
 
   function orderDelivered(item){
     firestore
@@ -102,13 +102,12 @@ function Waiter() {
       setDelivered(newDelivered);
 
       growl.success({text: 'Pedido pronto para entrega!', ...option})
-
-  } 
+  }; 
 
   function time(readyTime, orderTime){
     const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
     return `${Math.abs(Math.round(diffTime))} min`
-  }
+  };
 
   return (
     <div className={css(styles.kitchenPage)}>
