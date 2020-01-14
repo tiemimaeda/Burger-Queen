@@ -23,7 +23,7 @@ A interface mostra dois menus (café da manhã e restante do dia), cada um com t
 
 ### Paleta de cores
 
-![burger-queen-colorspallete](src/images/colorspallete.png)
+![burger-queen-colorspallete](ptmburgerqueen/src/images/colorspallete.png)
 
 ## 3. Histórias de Usuário
 
@@ -56,17 +56,17 @@ Eu como garçom/garçonete quero ver os pedidos que estão prontos para entregá
 #### Aba Salão
 O usuário que anotará o pedido pode escolher entre os menus (Café da Manhã ou Almoço/Jantar) selecionando os itens desejados, depois marcando o nome do cliente e mesa. 
 
-![floor page](src/images/floorpage.png)
+![floor page](ptmburgerqueen/src/images/floorpage.png)
 
 Será mostrado em tempo real o resumo do pedido, podendo aumentar, diminuir ou excluir algum item antes de enviar o pedido à cozinha. 
 
 #### Aba Cozinha
 O usuário da cozinha visualiza os pedidos pendentes e pode marcar o pedido como pronto. 
 
-![kitchen page](src/images/kitchenpage.png)
+![kitchen page](ptmburgerqueen/src/images/kitchenpage.png)
 
 
 #### Aba Pedidos
 O usuário pode visualizar a lista de pedidos prontos para servir e marcar como entregue.
 
-![waiter page](src/images/waiterpage.png)
+![waiter page](ptmburgerqueen/src/images/waiterpage.png)
