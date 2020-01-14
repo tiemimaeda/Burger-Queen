@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   listItems: {
     display:'flex',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
 
   counterContainer: {

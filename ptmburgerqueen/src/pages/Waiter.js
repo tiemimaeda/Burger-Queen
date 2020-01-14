@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import firestore from './utils/Firebase';
 import { StyleSheet, css } from 'aphrodite';
 import growl from 'growl-alert';
 import 'growl-alert/dist/growl-alert.css';
+import firestore from './utils/Firebase';
 import OrderCard from '../components/OrderCard';
 import Button from '../components/Button';
 
@@ -101,13 +101,13 @@ function Waiter() {
       const newDelivered = [...delivered, {...item, status: 'delivered', time: new Date().getTime()}];
       setDelivered(newDelivered);
 
-      growl.success({text: 'Pedido entregue!', ...option})
+      growl.success({text: 'Pedido pronto para entrega!', ...option})
 
   } 
 
   function time(readyTime, orderTime){
     const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
-    return `${Math.abs(Math.round(diffTime))}min`
+    return `${Math.abs(Math.round(diffTime))} min`
   }
 
   return (
@@ -160,7 +160,7 @@ function Waiter() {
                   )
                 })}
                 />
-                <div>Total: {item.total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</div>
+                <p>Total: {item.total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
             </div>
           )}
         </div>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const styles = StyleSheet.create({
   header: {
     display: 'flex',
+    justifyContent: 'space-between',
   },
 
   styleLogo: {
