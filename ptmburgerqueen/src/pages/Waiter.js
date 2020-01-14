@@ -160,7 +160,7 @@ function Waiter() {
                   )
                 })}
                 />
-                <p>Total: {item.total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
+                <p>Total: {item.total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
             </div>
           )}
         </div>

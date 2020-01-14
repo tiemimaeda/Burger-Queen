@@ -106,39 +106,39 @@ function Kitchen() {
 
 function time(readyTime, orderTime){
   const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
-  return `${Math.abs(Math.round(diffTime))}min`
+  return `${Math.abs(Math.round(diffTime))} min`
 }
 
   return (
     <div className={css(styles.kitchenPage)}>
       <div className={css(styles.cardOrdersContainer)}>
         <p className={css(styles.title)}>PEDIDOS PENDENTES</p>
-          <div className={css(styles.orderContainer)}>
-            {pending.map((item) => 
-            <div key={item.id} className={css(styles.ordercard)}>
-              <OrderCard
-                sendTime={new Date(item.sendTime).toLocaleTimeString('pt-BR')}
-                table={item.table}
-                customer={item.customer}
-                order={item.order.map((item, index) => {
-                  return(
-                    <div key={index}>
-                      {item.count}
-                      {item.Name} {item.extra}
-                    </div>
-                )})}
+        <div className={css(styles.orderContainer)}>
+          {pending.map((item) => 
+          <div key={item.id} className={css(styles.ordercard)}>
+            <OrderCard
+              sendTime={new Date(item.sendTime).toLocaleTimeString('pt-BR')}
+              table={item.table}
+              customer={item.customer}
+              order={item.order.map((item, index) => {
+                return(
+                  <div key={index}>
+                    {item.count}
+                    {item.Name} {item.extra}
+                  </div>
+              )})}
+            />
+              <Button
+                className={css(styles.btnOrderReady)}
+                handleClick={(e) => {
+                  orderDone(item)
+                  e.preventDefault()
+                }}
+                title={'Pedido Pronto'}
               />
-                <Button
-                  className={css(styles.btnOrderReady)}
-                  handleClick={(e) => {
-                    orderDone(item)
-                    e.preventDefault()
-                  }}
-                  title={'Pedido Pronto'}
-                />
-            </div>
-            )}
           </div>
+          )}
+        </div>
       </div>
 
       <div className={css(styles.cardOrdersContainer)}>

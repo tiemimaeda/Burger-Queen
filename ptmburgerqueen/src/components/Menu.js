@@ -66,7 +66,7 @@ function Menu(props) {
       <Button
         className={css(styles.btnProducts)}
         Name={props.item.Name}
-        Price={props.item.Price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+        Price={props.item.Price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
         handleClick={(e) => {
           props.addItem(props.item);
           e.preventDefault();
@@ -79,7 +79,7 @@ function Menu(props) {
         <Button
           className={css(styles.btnProducts)}
           Name={props.item.Name}
-          Price={props.item.Price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+          Price={props.item.Price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
           handleClick={(e) => {
             setShow(!show)
           }}
@@ -93,7 +93,7 @@ function Menu(props) {
                       <div key={index}>
                         <label>{extra.Name}</label>
                         <input className={css(styles.inputModal)}
-                          type="radio"
+                          type='radio'
                           value={extra.Name} 
                           onChange={() => 
                             setSelectedExtra(extra.Name)} 
@@ -107,9 +107,9 @@ function Menu(props) {
                       props.addItem(props.item, selectedExtra);
                       e.preventDefault();
                       setShow(!show);
-                      setSelectedExtra("")
+                      setSelectedExtra('')
                     }}
-                    title={"Adicionar"}
+                    title={'Adicionar'}
                   />
                 </div>
               </div>
