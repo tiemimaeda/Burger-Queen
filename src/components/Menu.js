@@ -97,7 +97,7 @@ function Menu(props) {
                           value={extra.Name} 
                           onChange={() => 
                             setSelectedExtra(extra.Name)} 
-                            checked={extra.Name === selectedExtra}/>;
+                            checked={extra.Name === selectedExtra}/>
                       </div>
                     )
                 })}

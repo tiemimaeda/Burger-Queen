@@ -160,7 +160,7 @@ function ShowMenu() {
   function removeItem (item) {
     const index = (order.indexOf(item));
     const extraPrice = item.extra ? 1 : 0;
-
+    // order.filter(elem) => !== elem
     order.splice(index, 1);
     setOrder([...order]);
     setTotal(total - ((item.Price + extraPrice) * item.count))
@@ -182,7 +182,7 @@ function ShowMenu() {
   };
 
   function sendOrder() {
-    if (customer && table) {
+    if (customer && table && order.length) {
     firestore
       .collection('Orders')
       .add({
@@ -199,10 +199,17 @@ function ShowMenu() {
         setTable('')
         setOrder([])
         setTotal(0)
-      })}
-      else {
-        growl.warning({text: 'Preencha nome e mesa', ...option})
-      }
+      })
+      
+    } else if (!order.length) {
+      growl.warning({text: 'Adicione um item', ...option})
+
+    } else if (!customer){
+      growl.warning({text: 'Preencha nome', ...option})
+      
+    } else if (!table){
+    growl.warning({text: 'Preencha mesa', ...option})
+    }
   };
 
   return (
