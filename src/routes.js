@@ -12,17 +12,14 @@ import Waiter from './pages/Waiter';
 function App() {
   
   return (
-   <Router>
-     <Navbar/>
-    <div>
-     <Switch>
-        <Route exact path="/" component={Floor}/>
-        <Route path="/kitchen" component={Kitchen}/>
-        <Route path="/waiter" component={Waiter}/>
-
-      </Switch>
-    </div>
-  </Router>
+    <Router>
+      <Navbar/>
+        <Switch>
+          <Route exact path="/" component={Floor}/>
+          <Route path="/kitchen" component={Kitchen}/>
+          <Route path="/waiter" component={Waiter}/>
+        </Switch>
+    </Router>
   );
 }
 
