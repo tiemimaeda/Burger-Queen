@@ -124,7 +124,7 @@ function Kitchen() {
                 return(
                   <div key={index}>
                     {item.count}
-                    {item.Name} {item.extra}
+                    x {item.Name} {item.extra}
                   </div>
               )})}
             />
@@ -155,7 +155,7 @@ function Kitchen() {
                 return (
                   <div key={index}>
                     {item.count}
-                    {item.Name} {item.extra}
+                    x {item.Name} {item.extra}
                   </div>
                 )
               })}

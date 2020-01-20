@@ -123,7 +123,7 @@ function Waiter() {
                   return(
                     <div key={index}>
                       {item.count}
-                      {item.Name} {item.extra}
+                      x {item.Name} {item.extra}
                     </div>
                 )})}
               />
@@ -154,7 +154,7 @@ function Waiter() {
                   return (
                     <div key={index}>
                       {item.count}
-                      {item.Name} {item.extra}  
+                      x {item.Name} {item.extra}  
                     </div>
                   )
                 })}

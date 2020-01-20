@@ -158,11 +158,10 @@ function ShowMenu() {
   };
 
   function removeItem (item) {
-    const index = (order.indexOf(item));
+    const delItem = order.filter(elem => elem !== item);
     const extraPrice = item.extra ? 1 : 0;
-    // order.filter(elem) => !== elem
-    order.splice(index, 1);
-    setOrder([...order]);
+ 
+    setOrder([...delItem]);
     setTotal(total - ((item.Price + extraPrice) * item.count))
   };
 
