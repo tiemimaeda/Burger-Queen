@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
   tableCustomer: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginBottom: '4%'
   },
 
@@ -27,8 +27,8 @@ const OrderCard = (props) => {
       <div className={css(styles.tableCustomer)}>
         <div className={css(styles.strong)}> Mesa: {props.table} </div>
         <div className={css(styles.strong)}> Cliente: {props.customer} </div>
-        {props.sendTime}
       </div>
+      <p className={css(styles.strong)}>{props.sendTime} </p>
       {props.order}
       {props.total}
     </div>

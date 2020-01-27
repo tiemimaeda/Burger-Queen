@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
   },
   
   modal: {
-    width: '200px',
-    height:'180px',
+    width: '280px',
+    height:'210px',
     background: 'white',
     borderRadius: '10px',
     padding: '20px',
@@ -52,8 +52,13 @@ const styles = StyleSheet.create({
     border:'none',
     color: 'white',
     width: '120px',
-    height:'50px',
+    height:'60px',
     marginTop:'20px'
+  },
+
+  btnPosition: {
+    display: 'flex',
+    justifyContent: 'space-between'
   },
 })
 
@@ -101,16 +106,26 @@ function Menu(props) {
                       </div>
                     )
                 })}
+                  <div className={css(styles.btnPosition)}>
+                    <Button className={css(styles.btnAdd)}
+                      handleClick={(e) => {
+                        props.addItem(props.item, selectedExtra);
+                        e.preventDefault();
+                        setShow(!show);
+                      }}
+                      title={'Sem Adicional'}
+                    />
 
-                  <Button className={css(styles.btnAdd)}
-                    handleClick={(e) => {
-                      props.addItem(props.item, selectedExtra);
-                      e.preventDefault();
-                      setShow(!show);
-                      setSelectedExtra('');
-                    }}
-                    title={'Adicionar'}
-                  />
+                    <Button className={css(styles.btnAdd)}
+                      handleClick={(e) => {
+                        props.addItem(props.item, selectedExtra);
+                        e.preventDefault();
+                        setShow(!show);
+                        setSelectedExtra('');
+                      }}
+                      title={'Adicionar'}
+                    />
+                  </div>
                 </div>
               </div>
             : null

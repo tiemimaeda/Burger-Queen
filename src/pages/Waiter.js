@@ -105,9 +105,14 @@ function Waiter() {
   }; 
 
   function time(readyTime, orderTime){
-    const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60
-    return `${Math.abs(Math.round(diffTime))} min`
-  };
+    const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60;
+    if (diffTime <= 60){
+    return `Pedido entregue em ${Math.abs(Math.round(diffTime))} min`;
+    } else {
+      const diffTime = ((readyTime.getTime()- orderTime.getTime())) / 1000 / 60 / 60;
+      return `Pedido entregue em ${Math.abs(Math.round(diffTime))} horas`;
+    }
+  }
 
   return (
     <div className={css(styles.kitchenPage)}>

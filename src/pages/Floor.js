@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   itemsList: {
     height: '100%',
     overflow: 'auto',
-    fontSize: '22px',
+    fontSize: '20px',
   },
 
   total: {
@@ -138,11 +138,13 @@ function ShowMenu() {
  
   const categoryItems = category === 'Lanches' ? lunchItems : breakfastItems;
 
+  // const typeItems = () => {categoryItems.filter((item) => {return (item.Type === 'Bebidas')})}
+
   function addItem(item, extra) {
     const itemIndex = order.findIndex((el) => el.id === item.id && el.extra === extra);
     if (itemIndex === -1) {
       if(extra){
-      setOrder([...order, {...item, count: 1, extra}]);
+      setOrder([...order, {...item, count: 1, extra: `com ${extra}`}]);
     
       } else {
       setOrder([...order, {...item, count: 1}])

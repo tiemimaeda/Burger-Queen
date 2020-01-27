@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   listItems: {
     display:'flex',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
   },
 
   counterContainer: {
@@ -49,9 +49,7 @@ function Order (props) {
     <div>
       <div className={css(styles.order)}>
         <div className={css(styles.listItems)}>
-          <span>{props.item.Name}</span> 
-          <span> + {props.item.extra}</span>
-          {itemPrice.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+          <span>{props.item.Name}</span> <span>{props.item.extra}</span> = {itemPrice.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
         </div>
         
         <div className={css(styles.counterContainer)}>
