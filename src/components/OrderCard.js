@@ -12,11 +12,12 @@ const styles = StyleSheet.create({
   tableCustomer: {
     display: 'flex',
     justifyContent: 'space-around',
-    marginBottom: '4%'
   },
 
   strong: {
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: '2%',
   },
 
 });
@@ -28,7 +29,7 @@ const OrderCard = (props) => {
         <div className={css(styles.strong)}> Mesa: {props.table} </div>
         <div className={css(styles.strong)}> Cliente: {props.customer} </div>
       </div>
-      <p className={css(styles.strong)}>{props.sendTime} </p>
+      <span className={css(styles.strong)}>{props.sendTime} </span>
       {props.order}
       {props.total}
     </div>

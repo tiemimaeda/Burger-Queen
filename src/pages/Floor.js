@@ -138,10 +138,8 @@ function ShowMenu() {
  
   const categoryItems = category === 'Lanches' ? lunchItems : breakfastItems;
 
-  // const typeItems = () => {categoryItems.filter((item) => {return (item.Type === 'Bebidas')})}
-
   function addItem(item, extra) {
-    const itemIndex = order.findIndex((el) => el.id === item.id && el.extra === extra);
+    const itemIndex = order.findIndex((el) => el.id === item.id || el.extra === `com ${extra}`);
     if (itemIndex === -1) {
       if(extra){
       setOrder([...order, {...item, count: 1, extra: `com ${extra}`}]);
@@ -168,7 +166,7 @@ function ShowMenu() {
   };
 
   function minusItem(item, extra) {
-    const itemIndex = order.findIndex((el) => el.id === item.id && item.extra === extra);
+    const itemIndex = order.findIndex((el) => el.id === item.id || item.extra === extra);
     const itemCount = order[itemIndex];
 
     if (itemCount.count === 1) {
@@ -275,9 +273,9 @@ function ShowMenu() {
         </div>
 
         <div className={css(styles.itemsList)}>
-          {order.map((item) => 
+          {order.map((item, i) => 
             <Order 
-              key={item.id} 
+              key={i} 
               item={item} 
               addItem={addItem} 
               removeItem={removeItem} 
