@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import growl from 'growl-alert';
 import 'growl-alert/dist/growl-alert.css';
-import firestore from '../utils/Firebase';
+import firestore from '../testeignore/utils/Firebase';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Menu from '../components/Menu';
