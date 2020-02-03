@@ -139,10 +139,10 @@ function ShowMenu() {
   const categoryItems = category === 'Lanches' ? lunchItems : breakfastItems;
 
   function addItem(item, extra) {
-    const itemIndex = order.findIndex((el) => el.id === item.id || el.extra === `com ${extra}`);
-    if (itemIndex === -1) {
-      if(extra){
-      setOrder([...order, {...item, count: 1, extra: `com ${extra}`}]);
+    const itemIndex = order.findIndex((el) => el.id === item.id && el.extra === extra);
+    if (itemIndex === -1) 
+      { if(extra){
+      setOrder([...order, {...item, count: 1, extra}]);
     
       } else {
       setOrder([...order, {...item, count: 1}])
@@ -166,7 +166,7 @@ function ShowMenu() {
   };
 
   function minusItem(item, extra) {
-    const itemIndex = order.findIndex((el) => el.id === item.id || item.extra === extra);
+    const itemIndex = order.findIndex((el) => el.id === item.id && item.extra === extra);
     const itemCount = order[itemIndex];
 
     if (itemCount.count === 1) {
